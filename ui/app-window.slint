@@ -1,0 +1,48 @@
+import { Button, VerticalBox } from "std-widgets.slint";
+
+export component AppWindow inherits Window {
+    in property <string> net_in: "";
+    in property <string> net_out: "";
+    callback update_net_stats(rx: float, tx:float);
+
+    background: #0d0f0f;
+    width: 200px; height: 100px;
+
+    GridLayout {
+        //spacing: 10px;
+        Row{
+            Rectangle {
+                Text {
+                    text: "\{root.net_in}";
+                    width: 200px;
+                    horizontal-alignment: center;
+                    font-size: 15pt;
+                    //height: 100%;
+                    vertical-alignment: center;
+                    font-weight: 10;
+                    color: #53914d;
+                }
+            }
+            
+        }
+        Row{
+            Rectangle {
+                Text {
+                    text: "\{root.net_out}";
+                    width: 200px;
+                    horizontal-alignment: center;
+                    font-size: 15pt;
+                    //height: 100%;
+                    vertical-alignment: center;
+                    font-weight: 10;
+                    color: #1e5588;
+                }
+
+            }
+            
+        }
+        
+
+ 
+    }
+}
