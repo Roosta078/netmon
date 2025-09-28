@@ -1,0 +1,14 @@
+[mqtt_broker]
+    host = "192.168.10.10"
+    port = 1883
+    topic = "collectd/OpenWrt/interface-eth1/if_octets"
+    id = "netmon"
+    cap = 10
+
+[slint]
+    width = 200
+    height = 100
+    in_color = 0x53914d
+    out_color = 0x1e5e588
+    background_color = 0x0d0f0f
+    
