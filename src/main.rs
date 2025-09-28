@@ -5,7 +5,7 @@ use std::{error::Error, sync::{Arc, Mutex}, thread, time::Duration, fs};
 use slint::{Timer, TimerMode};
 use serde::Deserialize;
 use rumqttc::{Client, Event, MqttOptions, Packet, QoS};
-use rumqttc;
+
 use log::{info, warn, error, debug};
 slint::include_modules!();
 
