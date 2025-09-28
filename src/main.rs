@@ -46,7 +46,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         client.subscribe("collectd/OpenWrt/interface-eth1/if_octets", QoS::AtMostOnce).expect("subcribe failed");
         
         for event in connection.iter() {
-            if *run_cln.lock().unwrap() == false {
+            if !(*run_cln.lock().unwrap()) {
                 break;
             }
             if let Ok(Event::Incoming(Packet::Publish(p))) = event  {
