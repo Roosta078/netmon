@@ -47,12 +47,28 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     timer.start(TimerMode::Repeated, std::time::Duration::from_millis(200), 
         move || {
-            if let Some(window) = weak_handle.upgrade(){
+            if let Some(window) = weak_handle.upgrade() {
                 let current_stats = tim_shared.lock().unwrap();
-                let in_str = format!("{:.2} Mbps ↑",current_stats.tx * 8.0 / 1_000_000.0);
+                let in_str = if current_stats.tx * 8.0 < 1_000.0 {
+                        format!("{:.2} bps ↑",current_stats.tx * 8.0)
+                    } else if current_stats.tx * 8.0 < 1_000_000.0 {
+                        format!("{:.2} kbps ↑",current_stats.tx * 8.0 / 1_000.0)
+                    } else if current_stats.tx * 8.0 < 1_000_000_000.0 {
+                        format!("{:.2} Mbps ↑",current_stats.tx * 8.0 / 1_000_000.0)
+                    } else {
+                        format!("{:.2} Gbps ↑",current_stats.tx * 8.0 / 1_000_000_000.0)
+                    };
                 window.set_net_in(in_str.into());
 
-                let out_str = format!("{:.2} Mbps ↓",current_stats.rx * 8.0 / 1_000_000.0);
+                let out_str = if current_stats.rx * 8.0 < 1_000.0 {
+                        format!("{:.2} bps ↓",current_stats.rx * 8.0)
+                    } else if current_stats.rx * 8.0 < 1_000_000.0 {
+                        format!("{:.2} kbps ↓",current_stats.rx * 8.0 / 1_000.0)
+                    } else if current_stats.rx * 8.0 < 1_000_000_000.0 {
+                        format!("{:.2} Mbps ↓",current_stats.rx * 8.0 / 1_000_000.0)
+                    } else {
+                        format!("{:.2} Gbps ↓",current_stats.rx * 8.0 / 1_000_000_000.0)
+                    };
                 window.set_net_out(out_str.into());
             }
     });

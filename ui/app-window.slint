@@ -6,17 +6,17 @@ export component AppWindow inherits Window {
     callback update_net_stats(rx: float, tx:float);
 
     background: #0d0f0f;
-    width: 200px; height: 100px;
-
+    width: 240px; height: 240px;
+    title: "netmon";
     GridLayout {
         //spacing: 10px;
         Row{
             Rectangle {
                 Text {
                     text: "\{root.net_in}";
-                    width: 200px;
+                    width: 240px;
                     horizontal-alignment: center;
-                    font-size: 15pt;
+                    font-size: 20pt;
                     //height: 100%;
                     vertical-alignment: center;
                     font-weight: 10;
@@ -29,9 +29,9 @@ export component AppWindow inherits Window {
             Rectangle {
                 Text {
                     text: "\{root.net_out}";
-                    width: 200px;
+                    width: 240px;
                     horizontal-alignment: center;
-                    font-size: 15pt;
+                    font-size: 20pt;
                     //height: 100%;
                     vertical-alignment: center;
                     font-weight: 10;
